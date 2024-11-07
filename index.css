@@ -1,0 +1,153 @@
+/* General Body Styling */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  gap: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1{
+  color: rgb(61, 61, 61);
+}
+
+/* Select Element */
+select {
+  position: absolute;
+  top: 550px;
+  left: 0;
+  width: 230px;
+  height: 30px;
+  font-size: 15px;
+  color: rgb(30, 30, 30);
+  background-color: #8fa9ef;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+/* Changed and Original Background Styles */
+#changed {
+  background-color: #93ff9322;
+  overflow: auto;
+}
+
+#original {
+  background-color: #47474717;
+  overflow: auto;
+}
+
+/* Button Styling */
+form button {
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 13px 15px;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+  background-color: rgb(67, 40, 68);
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: rgba(67, 40, 68, 0.9);
+}
+
+/* Form Container Styling */
+form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 600px;
+  max-height: 600px;
+  min-height: 300px;
+}
+
+/* Input Area Styling */
+.input-area {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+/* Textarea Styling */
+textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  background-color: rgb(244, 244, 244);
+  border-radius: 5px;
+  border: solid rgb(212, 212, 212) 1px;
+  resize: none;
+  outline: none;
+  white-space: nowrap;
+
+}
+
+textarea::placeholder{
+  font-size: 20px;
+}
+
+/* Diff Container Styling */
+.diff-container {
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  gap: 5px;
+  width: 100%;
+}
+
+.diff-container button{
+  right: 5px;
+  top: 5px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 6px 16px;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: #fff;
+  background-color: rgb(10, 212, 7);
+  transition: background-color 0.3s ease;
+}
+
+.diff-container button:disabled{
+  background-color: rgba(10, 212, 7, .7);
+}
+
+.diff-container div {
+  padding: 10px;
+  border: 1px solid gray;
+  width: 100%;
+  overflow: hidden;
+}
+
+.diff-container h2 {
+  text-align: center;
+  width: 100%;
+}
+
+/* Text Add and Delete Styling */
+.text-del {
+  background-color: #fb9393;
+  text-decoration: line-through;
+}
+
+.text-add {
+  background-color: #90ff90;
+  text-decoration: underline;
+}
+
+.comment{
+  background-color: #fff718;
+  text-decoration: underline;
+}

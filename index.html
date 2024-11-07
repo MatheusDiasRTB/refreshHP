@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update HP Template</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <script src="diff_match_patch.js"></script>
+    <h1>Refresh settings.json - High Performance Banners</h1>
+    <form id="templateForm">
+      <div class="input-area">
+        <textarea
+          required
+          onclick="this.select()"
+          id="oldTemplateInput"
+          placeholder="input OLD settings.json"
+        ></textarea>
+        <textarea
+          required
+          onclick="this.select()"
+          id="newTemplateInput"
+          placeholder="input NEW settings.json"
+        ></textarea>
+      </div>
+      <button type="submit">Generate Updated Version</button>
+      <select id="jsonDropdown">
+        <option value="0" selected>Test coverage for specific pack</option>
+      </select>
+    </form>
+
+    <div class="diff-container">
+      <div>
+        <h2>Original Template</h2>
+        <pre id="original"></pre>
+      </div>
+
+      <div>
+        <h2>Updated Template</h2>
+        <pre id="changed"></pre>
+        <button id="copy">copy</button>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
