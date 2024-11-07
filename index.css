@@ -9,6 +9,7 @@ body {
   padding: 10px;
   gap: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: rgba(67, 40, 68, 0.2);
 }
 
 h1{
@@ -104,6 +105,10 @@ textarea::placeholder{
   position: relative;
   gap: 5px;
   width: 100%;
+}
+
+.template-container{
+  background: white;
 }
 
 .diff-container button{
