@@ -9,6 +9,7 @@ const keysToReplaceValues = [
   { GLOBAL_FONT_FAMILY: "BANNER.FONT_FAMILY" },
   { GLOBAL_FONT_SIZE: "BANNER.FONT_SIZE" },
   { GLOBAL_FONT_COLOR: "BANNER.FONT_COLOR" },
+  { GLOBAL_FONT_WEIGHT: "BANNER.FONT_WEIGHT" },
   { BANNER_TOURISTIC: "BANNER.TOURISTIC" },
   { BANNER_CONTAINER_IMAGE_SIZE: "BANNER.IMAGE_SIZE" },
   { BANNER_CONTAINER_IMAGE_POSITION: "BANNER.IMAGE_POSITION" },
@@ -277,7 +278,10 @@ const copyBtn = document.getElementById("copy");
 function copyUpdatedToClipboard() {
   const div = document.getElementById("changed");
 
-  const textWithoutComments = (div.textContent || div.innerText).replace(/\/\/.*/g, "");
+  const textWithoutComments = (div.textContent || div.innerText).replace(
+    /\/\/.*/g,
+    ""
+  );
 
   navigator.clipboard
     .writeText(textWithoutComments)
@@ -303,32 +307,37 @@ function updateTemplate(oldTemplate, newTemplate) {
     const oldKey = Object.keys(mapping)[0];
     const newPath = mapping[oldKey].split(".");
     const oldValue = oldTemplate.MACROS[oldKey];
-    if (oldKey == "HIDE_OLD_PRICE") {
-      let value;
-      if (oldValue == "true") {
-        value = "false";
-      } else {
-        value = "true";
-      }
-      if (oldValue !== undefined) {
-        let target = newTemplate;
-        for (let i = 0; i < newPath.length - 1; i++) {
-          target = target[newPath[i]];
-        }
-        target[newPath[newPath.length - 1]] = value;
-      }
-    } else {
-      if (oldValue !== undefined) {
-        valueToSet = oldValue
-          .replace("background: ", "")
-          .replace("background:", "");
-        let target = newTemplate;
-        for (let i = 0; i < newPath.length - 1; i++) {
-          target = target[newPath[i]];
-        }
-        target[newPath[newPath.length - 1]] = valueToSet;
-      }
+
+    if (oldValue === undefined) return;
+
+    let valueToSet = oldValue;
+    let target = newTemplate;
+
+    for (let i = 0; i < newPath.length - 1; i++) {
+      target = target[newPath[i]];
     }
+
+    const finalKey = newPath[newPath.length - 1];
+
+    switch (oldKey) {
+      case "HIDE_OLD_PRICE":
+        valueToSet = oldValue === "true" ? "false" : "true";
+        break;
+      case "REGION_CUSTOM_PROPERTY":
+      case "STARS_CUSTOM_PROPERTY":
+        valueToSet = `customProperties.${oldValue}`;
+        break;
+      case "EXTRA_HTML":
+        valueToSet = oldValue.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      case "BANNER_CONTAINER_BACKGROUND_COLOR":
+        const hexMatch = oldValue.match(
+          /#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})(?![0-9A-Fa-f])/
+        );
+        if (hexMatch) valueToSet = hexMatch[0];
+        break;
+    }
+
+    target[finalKey] = valueToSet;
   });
   return newTemplate;
 }
@@ -374,11 +383,15 @@ function launchDiff(oldTemplateStr, updatedTemplateStr) {
 				"ENABLED": "true", <span class='comment'>//this one is set by the opposite value of "HIDE_OLD_PRICE"</span>`
     )
     .replace(
-      `"GOOGLE_FONTS": "",`,
-      newStr.includes(`"GOOGLE_FONT_FAMILY": ""`)
-        ? `"GOOGLE_FONTS": "",`
-        : `"GOOGLE_FONTS": "", <span class='comment'>//please set this manually</span>`
+      `"FORMAT": "1,110.00 PLN",`,
+      `"FORMAT": "1,110.00 PLN", <span class='comment'>//please set this manually</span>`
     );
+  // .replace(
+  //   `"GOOGLE_FONTS": "",`,
+  //   newStr.includes(`"GOOGLE_FONT_FAMILY": ""`)
+  //     ? `"GOOGLE_FONTS": "",`
+  //     : `"GOOGLE_FONTS": "", <span class='comment'>//please set this manually</span>`
+  // );
 }
 
 function handleFormSubmit(event) {
