@@ -323,10 +323,10 @@ function updateTemplate(oldTemplate, newTemplate) {
       case "HIDE_OLD_PRICE":
         valueToSet = oldValue === "true" ? "false" : "true";
         break;
-      case "REGION_CUSTOM_PROPERTY":
-      case "STARS_CUSTOM_PROPERTY":
-        valueToSet = `customProperties.${oldValue}`;
-        break;
+      // case "REGION_CUSTOM_PROPERTY":
+      // case "STARS_CUSTOM_PROPERTY":
+      //   valueToSet = `customProperties.${oldValue}`;
+      //   break;
       case "EXTRA_HTML":
         valueToSet = oldValue.replace(/</g, '&lt;').replace(/>/g, '&gt;')
       case "BANNER_CONTAINER_BACKGROUND_COLOR":
