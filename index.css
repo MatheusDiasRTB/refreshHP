@@ -4,15 +4,17 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
-  padding: 10px;
   gap: 10px;
+  padding-bottom: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: rgba(67, 40, 68, 0.2);
 }
 
-h1{
+
+
+h1, h2, .instructions{
   color: rgb(61, 61, 61);
 }
 
@@ -64,17 +66,15 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   width: 100%;
   height: 600px;
-  max-height: 600px;
-  min-height: 300px;
 }
 
 /* Input Area Styling */
 .input-area {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   width: 100%;
   height: 100%;
 }
@@ -103,7 +103,7 @@ textarea::placeholder{
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  gap: 5px;
+  gap: 10px;
   width: 100%;
 }
 
@@ -155,4 +155,44 @@ textarea::placeholder{
 .comment{
   background-color: #fff718;
   text-decoration: underline;
+}
+
+h2{
+  margin-top: -10px;
+}
+
+.instructions-container{
+  border-radius: 5px;
+  padding: 20px;
+  background-color: white;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.instructions{
+  gap: .5em;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  font-weight: 500;
+}
+
+.step-4,.step-5{
+  display: none;
+}
+
+.support{
+  color: gray;
+  right: 15px;
+  bottom: 70px;
+  position: absolute;
+  pointer-events: none;
+}
+
+
+#jsonDropdown{
+  display: none;
 }
