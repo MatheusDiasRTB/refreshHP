@@ -330,10 +330,17 @@ function updateTemplate(oldTemplate, newTemplate) {
       case "EXTRA_HTML":
         valueToSet = oldValue.replace(/</g, '&lt;').replace(/>/g, '&gt;')
       case "BANNER_CONTAINER_BACKGROUND_COLOR":
-        const hexMatch = oldValue.match(
-          /#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})(?![0-9A-Fa-f])/
-        );
-        if (hexMatch) valueToSet = hexMatch[0];
+        const hexMatch = oldValue.match(/#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})(?![0-9A-Fa-f])/);
+        const rgbMatch = oldValue.match(/rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)/);
+        const rgbaMatch = oldValue.match(/rgba\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3}),\s*(0|1|0?\.\d+)\)/);
+    
+        if (hexMatch) {
+            valueToSet = hexMatch[0];
+        } else if (rgbMatch) {
+            valueToSet = `rgb(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]})`;
+        } else if (rgbaMatch) {
+            valueToSet = `rgba(${rgbaMatch[1]}, ${rgbaMatch[2]}, ${rgbaMatch[3]}, ${rgbaMatch[4]})`;
+        }
         break;
     }
 
@@ -421,6 +428,18 @@ function handleFormSubmit(event) {
 
   const diffContainer = document.querySelector(".diff-container");
   const inputs = document.querySelector("#templateForm");
+  const step1 = document.querySelector('.step-1')
+  const step2 = document.querySelector('.step-2')
+  const step3 = document.querySelector('.step-3')
+  const step4 = document.querySelector('.step-4')
+  const step5 = document.querySelector('.step-5')
+
+  step1.style.display = 'none';
+  step2.style.display = 'none';
+  step3.style.display = 'none';
+  step4.style.display = 'block';
+  step5.style.display = 'block';
+  
   inputs.style.display = "none";
   diffContainer.style.display = "flex";
 
