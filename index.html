@@ -9,6 +9,28 @@
   <body>
     <script src="diff_match_patch.js"></script>
     <h1>Refresh settings.json - High Performance Banners</h1>
+    <div class="instructions-container">
+      <h2>Instructions:</h2>
+      <div class="instructions">
+        <span class="step-1">
+          1. <strong>Copy</strong> the <strong>settings.json</strong> file from the <strong>old package</strong> and <strong>paste</strong> its content into the <strong>left box</strong>.
+        </span>
+        <span class="step-2">
+          2. <strong>Copy</strong> the <strong>settings.json</strong> file from the <strong>new package</strong> and <strong>paste</strong> its content into the <strong>right box</strong>.
+        </span>
+        <span class="step-3">
+          3. <strong>Press</strong> the button <strong>"Generate Updated Version"</strong>.
+        </span>
+        <span class="step-4">
+          4. <strong>Review the Results:</strong>
+          <br>- On the <strong>left side</strong>, you’ll see the original settings from the new package you created.
+          <br>- On the <strong>right side</strong>, you’ll see the updated settings with highlighted values merged from the old package.
+        </span>
+        <span class="step-5">
+          5. <strong>Copy</strong> the content from the <strong>right box</strong> ("Updated Settings") and <strong>paste</strong> it into the new package’s JSON file to apply the updates.
+        </span>
+      </div>
+    </div>
     <form id="templateForm">
       <div class="input-area">
         <textarea
@@ -23,6 +45,7 @@
           id="newTemplateInput"
           placeholder="input NEW settings.json"
         ></textarea>
+        <div class="support">Latest HP version supported/tested: <strong>*_2024-10-04</strong></div>
       </div>
       <button type="submit">Generate Updated Version</button>
       <select id="jsonDropdown">
@@ -32,7 +55,7 @@
 
     <div class="diff-container">
       <div class="template-container">
-        <h2>Original Template</h2>
+        <h2>Original Template (Default template values)</h2>
         <pre id="original"></pre>
       </div>
 
